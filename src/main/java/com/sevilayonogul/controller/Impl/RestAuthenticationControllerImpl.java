@@ -11,6 +11,7 @@ import com.sevilayonogul.controller.RootEntity;
 import com.sevilayonogul.dto.AuthRequest;
 import com.sevilayonogul.dto.AuthResponse;
 import com.sevilayonogul.dto.DtoUser;
+import com.sevilayonogul.dto.RefreshTokenRequest;
 import com.sevilayonogul.service.IAuthenticationService;
 
 import jakarta.validation.Valid;
@@ -33,6 +34,13 @@ public class RestAuthenticationControllerImpl extends RestBaseController impleme
 	public RootEntity<AuthResponse> authenticate(@Valid @RequestBody AuthRequest input) {
 		
 		return ok(authenticationService.authenticate(input));
+	}
+
+	@PostMapping("/refreshToken")
+	@Override
+	public RootEntity<AuthResponse> refreshToken(@Valid @RequestBody RefreshTokenRequest input) {
+		
+		return ok(authenticationService.refreshToken(input));
 	}
 
 }
